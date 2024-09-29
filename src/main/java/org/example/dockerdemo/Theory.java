@@ -150,7 +150,31 @@
 
      Generally, it's better to have single-container pods unless there's a compelling reason for multiple containers. This aligns with microservices principles and allows for more granular scaling and management.
 
- 11. TODO [Deployment configuration vs Service configuration]
+ 11. TODO [Control Manager and Worker Nodes]:
+     1. Control Manager Nodes (Control Plane):
+         Control manager nodes, also known as the control plane, are responsible for managing the overall state of the Kubernetes cluster. They make global decisions about the cluster and detect and respond to cluster events.
+
+         Key components of the control plane include:
+             - kube-apiserver: The API server that exposes the Kubernetes API.
+             - etcd: A distributed key-value store that stores all cluster data (database to store clusters metadata).
+             - kube-scheduler: Assigns newly created pods to nodes.
+             - kube-controller-manager: Runs controller processes (e.g., node controller, replication controller).
+             - cloud-controller-manager: Interacts with the underlying cloud provider's API.
+
+     2. Worker Nodes:
+         Worker nodes, also called compute nodes, are the machines that run the actual applications and workloads. They host the Pods, which are the smallest deployable units in Kubernetes.
+
+         Key components of worker nodes include:
+             - kubelet: An agent that runs on each node, ensuring containers are running in a Pod.
+             - kube-proxy: Maintains network rules on nodes, enabling communication to Pods from network sessions.
+             - Container runtime: The software responsible for running containers (e.g., Docker, containerd).
+
+     The main differences are:
+         - Function: Control plane nodes manage the cluster, while worker nodes run the workloads.
+         - Scalability: Typically, you have fewer control plane nodes (often 3-5 for high availability) and many more worker nodes that can scale based on workload demands.
+         - Resource usage: Control plane nodes often require more CPU and memory for cluster management tasks, while worker nodes' resources are primarily used by the deployed applications.
+
+ 12. TODO [Deployment configuration vs Service configuration]
      A. Deployment Configuration:
          1. Purpose:
             - Manages the deployment and scaling of a set of Pods
@@ -206,7 +230,7 @@
              - Deployment: Manages rolling updates of Pods
              - Service: Typically remains stable during Pod updates
 
- 11. TODO [Notes]:
+ 13. TODO [Notes]:
      1. OpenJDK Docker image, it typically includes a minimal base Linux operating system, such as Debian or Alpine and also Java. So, no need to include OS and java differently in Dockerfile, just use import openjdk
      2. JAR file (Java ARchive) is a packaged file format in Java that aggregates multiple files into a single compressed file, similar to a ZIP file. It typically contains Java class files, metadata, and other resources like images or configuration files that are needed for running Java programs.
      3. Alternate of docker is Podman
