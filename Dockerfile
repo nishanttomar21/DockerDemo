@@ -25,5 +25,5 @@ ENTRYPOINT ["java","-jar","app.jar"]
 #docker stop container_id
 #docker rm <container_name>     // To remove a stopped container
 #docker rmi <image_name>    // To delete an image
-#docker push aks2307/productservice:v0.000001
-#docker pull aks2307/productservice:v0.000001
+#docker push nishanttomar211/testingdocker:v1.000001
+#docker pull nishanttomar211/testingdocker:v1.000001
